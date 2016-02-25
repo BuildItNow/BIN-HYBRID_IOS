@@ -26,8 +26,8 @@
 //
 
 #import "BINScriptManager.h"
-#import "BINViewController.h"
+#import "BINPageViewController.h"
 
-@interface MainViewController : BINViewController<BINNativeObjectProtocol>
+@interface MainViewController : BINPageViewController
 
 @end

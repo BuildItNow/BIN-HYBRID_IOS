@@ -23,6 +23,7 @@
 		1F766FE113BBADB100FB74C0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F766FDC13BBADB100FB74C0 /* Localizable.strings */; };
 		1F766FE213BBADB100FB74C0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F766FDF13BBADB100FB74C0 /* Localizable.strings */; };
 		1FD951111C715A64007268F7 /* BINEventEmiterPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD951101C715A64007268F7 /* BINEventEmiterPlugin.m */; settings = {ASSET_TAGS = (); }; };
+		1FDD9BD31C7C5CC300F16CA5 /* BINPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDD9BD21C7C5CC300F16CA5 /* BINPageViewController.m */; settings = {ASSET_TAGS = (); }; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		301BF5B5109A6A2B0062928A /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF5B4109A6A2B0062928A /* AddressBook.framework */; };
 		301BF5B7109A6A2B0062928A /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF5B6109A6A2B0062928A /* AddressBookUI.framework */; };
@@ -132,6 +133,8 @@
 		1F766FE013BBADB100FB74C0 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Localizable.strings; sourceTree = "<group>"; };
 		1FD9510F1C715A64007268F7 /* BINEventEmiterPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BINEventEmiterPlugin.h; sourceTree = "<group>"; };
 		1FD951101C715A64007268F7 /* BINEventEmiterPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BINEventEmiterPlugin.m; sourceTree = "<group>"; };
+		1FDD9BD11C7C5CC300F16CA5 /* BINPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BINPageViewController.h; sourceTree = "<group>"; };
+		1FDD9BD21C7C5CC300F16CA5 /* BINPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BINPageViewController.m; sourceTree = "<group>"; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		301BF56E109A69640062928A /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = SOURCE_ROOT; };
@@ -271,6 +274,8 @@
 				1F5B18BE1C76DF2600156865 /* BINNativeObjectProtocol.h */,
 				1F5B1A8F1C7717FD00156865 /* BINNativeBridgePlugin.h */,
 				1F5B1A901C7717FD00156865 /* BINNativeBridgePlugin.m */,
+				1FDD9BD11C7C5CC300F16CA5 /* BINPageViewController.h */,
+				1FDD9BD21C7C5CC300F16CA5 /* BINPageViewController.m */,
 			);
 			path = BIN;
 			sourceTree = "<group>";
@@ -563,6 +568,7 @@
 			files = (
 				1F5951D31C707D6F00EFA8A9 /* AppDelegate+BINSetup.m in Sources */,
 				1F5B18BB1C76D5B000156865 /* BINScriptObject.m in Sources */,
+				1FDD9BD31C7C5CC300F16CA5 /* BINPageViewController.m in Sources */,
 				1FD951111C715A64007268F7 /* BINEventEmiterPlugin.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1F5B1A911C7717FD00156865 /* BINNativeBridgePlugin.m in Sources */,
@@ -631,6 +637,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_BITCODE = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -667,6 +674,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				COPY_PHASE_STRIP = YES;
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "demo/demo-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;

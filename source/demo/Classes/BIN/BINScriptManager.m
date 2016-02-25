@@ -172,7 +172,7 @@ static NSString* objectToString(id subject)
 
 - (NSArray*) argsToScript:(NSArray*)args
 {
-    if(args == nil)
+    if(args == nil || args == [NSNull null])
     {
         return nil;
     }
@@ -188,7 +188,7 @@ static NSString* objectToString(id subject)
 
 - (NSArray*) argsFmScript:(NSArray*)args
 {
-    if(args == nil)
+    if(args == nil || args == [NSNull null])
     {
         return nil;
     }
@@ -204,7 +204,7 @@ static NSString* objectToString(id subject)
 
 - (id) argToScript:(id)arg
 {
-    if(arg == nil)
+    if(arg == nil || arg == [NSNull null])
     {
         return nil;
     }
@@ -214,12 +214,17 @@ static NSString* objectToString(id subject)
         return [NSString stringWithFormat:@"bin#so=%@", ((BINScriptObject*)arg).key];
     }
     
+    if([arg isKindOfClass:[BINNativeObjectReference class]])
+    {
+        return [NSString stringWithFormat:@"bin#no=%@", ((BINNativeObjectReference*)arg).key];
+    }
+    
     return arg;
 }
 
 - (id) argFmScript:(id)arg
 {
-    if(arg == nil)
+    if(arg == nil|| arg == [NSNull null])
     {
         return nil;
     }

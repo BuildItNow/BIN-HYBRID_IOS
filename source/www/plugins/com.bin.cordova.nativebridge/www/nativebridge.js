@@ -65,6 +65,32 @@ cordova.define("com.bin.cordova.nativebridge", function(require, exports, module
        linkNativeWithScript : function(nKey, sKey)
        {
             exec(defSuccess, defError, "BINNativeBridge", "linkNativeWithScript", [nKey, sKey]);
+       },
+
+       pushNativePageView : function(name, object, pushData, queryParams, cb)
+       {
+            var nativeClass = object.__$class.native.ios;
+
+            object = REG_SCRIPT_OBJECT(object);
+            object = bin.nativeManager.argToNative(object); 
+
+            pushData   = bin.nativeManager.argsToNative(pushData);
+
+            var ncb = function(error, data)
+            {
+                if(!error)
+                {
+                    data = bin.nativeManager.argFmNative(data);
+                }
+
+                cb(error, data);
+            }
+
+            exec(cbSuccessWrapper(ncb) , cbErrorWrapper(ncb), "BINNativeBridge", "pushNativePageView", [name, nativeClass, object, pushData, queryParams]);
+       },
+       popNativePageView : function(cb)
+       {
+            exec(cbSuccessWrapper(cb) , cbErrorWrapper(cb), "BINNativeBridge", "popNativePageView", []);
        }
     };               
 });

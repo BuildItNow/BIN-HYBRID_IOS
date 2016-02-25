@@ -18,8 +18,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
-    self.navigationController.navigationBarHidden = true;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -30,7 +28,7 @@
 - (void) onSetupWebView:(UIWebView*) webView
 {
     [super onSetupWebView:webView];
-    
+
     webView.hidden = true;
 }
 

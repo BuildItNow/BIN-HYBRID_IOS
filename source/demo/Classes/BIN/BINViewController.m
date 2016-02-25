@@ -7,8 +7,12 @@
 //
 
 #import "BINViewController.h"
+#import "DotCSystemUtil.h"
 
 @interface BINViewController ()
+{
+    CGRect                  _statusBarFrame;
+}
 
 @end
 
@@ -17,7 +21,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+   
     // Do any additional setup after loading the view.
+    self.navigationController.navigationBarHidden = true;
+    _statusBarFrame = [DOTC_APPLICATION statusBarFrame];
+    
+    if([DotCSystemUtil aboveIOS7_0])
+    {
+        UIView* statusBar = WEAK_OBJECT(UIView, initWithFrame:_statusBarFrame);
+        statusBar.backgroundColor = [UIColor colorWithRed:247.0f/255.0f green:247.0f/255.0f blue:248.0f/255.0f alpha:1.0];
+        [self.view addSubview:statusBar];
+        [self.view sendSubviewToBack:statusBar];
+    }
+    else
+    {
+        _statusBarFrame.size.height = 0;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -37,12 +56,14 @@
 
 - (void) onSetupWebView:(UIWebView*) webView
 {
+    [self.view addSubview:webView];
+    webView.hidden = false;
+    
     CGRect frame = self.view.frame;
     frame.origin.x = 0;
-    frame.origin.y = 0;
+    frame.origin.y = _statusBarFrame.size.height;
+    frame.size.height -= _statusBarFrame.size.height;
     webView.frame = frame;
-    webView.hidden = false;
-    [self.view addSubview:webView];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

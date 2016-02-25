@@ -8,6 +8,7 @@
 
 #import "BINNativeBridgePlugin.h"
 #import "BINScriptManager.h"
+#import "BINPageViewController.h"
 
 @implementation BINNativeBridgePlugin
 
@@ -100,6 +101,48 @@
                        
                        ref.scriptObject = WEAK_OBJECT(BINScriptObject, init:self.binScriptManager key:sKey);
                    });
+}
+
+- (void)popNativePageView:(CDVInvokedUrlCommand*)command
+{
+    dispatch_async(dispatch_get_main_queue(),
+    ^{
+        [self.binScriptManager.viewController.navigationController popViewControllerAnimated:true];
+        
+        [self success:nil callbackId:command.callbackId];
+    });
+}
+
+- (void)pushNativePageView:(CDVInvokedUrlCommand*)command
+{
+    if(command.arguments.count < 5)
+    {
+        NSLog(@"Error : pushNativePageView fail");
+        
+        return ;
+    }
+    
+    NSString* name = command.arguments[0];
+    NSString* className = command.arguments[1];
+    BINScriptObject* scriptObject = [self.binScriptManager argFmScript:command.arguments[2]];
+    NSArray* pushData = [self.binScriptManager argsFmScript:command.arguments[3]];
+    DotCDictionaryWrapper* queryParams = [DotCDictionaryWrapper wrapperFromDictionary:command.arguments[4]];
+    
+    Class cls = NSClassFromString(className);
+    if(!cls)
+    {
+        NSLog(@"Error : pushNativePageView fail, class[%@] not exist", className);
+        
+        return ;
+    }
+    
+    dispatch_async(dispatch_get_main_queue(),
+    ^{
+        BINPageViewController* vc = WEAK_OBJECT(cls, init:name scriptObject:scriptObject pushData:pushData queryParams:queryParams);
+        [self.binScriptManager.viewController.navigationController pushViewController:vc animated:true];
+        
+        [self success:WEAK_OBJECT(CDVPluginResult, initWithStatus:CDVCommandStatus_OK message:[self.binScriptManager argToScript:vc.nativeObjectReference]) callbackId:command.callbackId];
+    });
 }
 
 - (void) onExecDone:(CDVInvokedUrlCommand*) command args:(DotCDelegatorArguments*)args

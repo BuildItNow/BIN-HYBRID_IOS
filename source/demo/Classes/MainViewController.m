@@ -17,14 +17,10 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    
-    [BIN_GLOBAL_SCRIPT_MANAGER registeNativeObject:self as:@"mainViewController"];
 }
 
 - (void) viewDidUnload
 {
-    [BIN_GLOBAL_SCRIPT_MANAGER removeNativeObject:self];
-    
     [super viewDidUnload];
 }
 

@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "BINViewController.h"
+#import "BINPageViewController.h"
 
-@interface BINSplashViewController : BINViewController
+@interface BINSplashViewController : BINPageViewController
 
 @end
