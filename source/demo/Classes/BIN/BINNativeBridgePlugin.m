@@ -9,6 +9,7 @@
 #import "BINNativeBridgePlugin.h"
 #import "BINScriptManager.h"
 #import "BINPageViewController.h"
+#import "BINStubViewController.h"
 
 @implementation BINNativeBridgePlugin
 
@@ -103,19 +104,58 @@
                    });
 }
 
-- (void)popNativePageView:(CDVInvokedUrlCommand*)command
+- (void)pushStubView:(CDVInvokedUrlCommand*)command
 {
     dispatch_async(dispatch_get_main_queue(),
+                   ^{
+                       UINavigationController* nvc = DOTC_UI_MANAGER.mainNavigationController;
+                       UIViewController* vc = nvc.topViewController;
+                       if([vc isKindOfClass:[BINStubViewController class]])
+                       {
+                           [self success:WEAK_OBJECT(CDVPluginResult, initWithStatus:CDVCommandStatus_OK message:nil) callbackId:command.callbackId];
+                           
+                           return ;
+                       }
+                       
+                       vc = WEAK_OBJECT(BINStubViewController, init);
+                       [nvc pushViewController:vc animated:true];
+                       
+                       [self success:WEAK_OBJECT(CDVPluginResult, initWithStatus:CDVCommandStatus_OK message:nil) callbackId:command.callbackId];
+                   });
+}
+
+- (void)popNativePageView:(CDVInvokedUrlCommand*)command
+{
+    if(command.arguments.count < 2)
+    {
+        return ;
+    }
+    int  n = ((NSNumber*)command.arguments[0]).intValue;;
+    bool a = ((NSNumber*)command.arguments[1]).boolValue;;
+    
+    dispatch_async(dispatch_get_main_queue(),
     ^{
-        [self.binScriptManager.viewController.navigationController popViewControllerAnimated:true];
+        UINavigationController* nvc = DOTC_UI_MANAGER.mainNavigationController;
+        if( n == 1)
+        {
+            [nvc popViewControllerAnimated:a];
+        }
+        else
+        {
+            NSArray* vcs = nvc.viewControllers;
+            int i = ((int)vcs.count)-1-n;
+            i = MAX(0, i);
+            
+            [nvc popToViewController:vcs[i] animated:a];
+        }
         
-        [self success:nil callbackId:command.callbackId];
+        [self success:WEAK_OBJECT(CDVPluginResult, initWithStatus:CDVCommandStatus_OK message:nil) callbackId:command.callbackId];
     });
 }
 
 - (void)pushNativePageView:(CDVInvokedUrlCommand*)command
 {
-    if(command.arguments.count < 5)
+    if(command.arguments.count < 6)
     {
         NSLog(@"Error : pushNativePageView fail");
         
@@ -125,8 +165,9 @@
     NSString* name = command.arguments[0];
     NSString* className = command.arguments[1];
     BINScriptObject* scriptObject = [self.binScriptManager argFmScript:command.arguments[2]];
-    NSArray* pushData = [self.binScriptManager argsFmScript:command.arguments[3]];
-    DotCDictionaryWrapper* queryParams = [DotCDictionaryWrapper wrapperFromDictionary:command.arguments[4]];
+    NSString* pushFrom = command.arguments[3];
+    NSArray* pushData = [self.binScriptManager argsFmScript:command.arguments[4]];
+    DotCDictionaryWrapper* queryParams = [DotCDictionaryWrapper wrapperFromDictionary:command.arguments[5]];
     
     Class cls = NSClassFromString(className);
     if(!cls)
@@ -138,8 +179,10 @@
     
     dispatch_async(dispatch_get_main_queue(),
     ^{
-        BINPageViewController* vc = WEAK_OBJECT(cls, init:name scriptObject:scriptObject pushData:pushData queryParams:queryParams);
-        [self.binScriptManager.viewController.navigationController pushViewController:vc animated:true];
+        UINavigationController* nvc = DOTC_UI_MANAGER.mainNavigationController;
+        BINPageViewController* vc = WEAK_OBJECT(cls, init:name scriptObject:scriptObject);
+        [vc onViewPush:pushFrom pushData:pushData queryParams:queryParams];
+        [nvc pushViewController:vc animated:true];
         
         [self success:WEAK_OBJECT(CDVPluginResult, initWithStatus:CDVCommandStatus_OK message:[self.binScriptManager argToScript:vc.nativeObjectReference]) callbackId:command.callbackId];
     });

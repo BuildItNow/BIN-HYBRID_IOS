@@ -18,9 +18,9 @@ typedef NSString* ScriptObjectKey;
 - (instancetype) init:(BINScriptManager*) scriptManager key:(ScriptObjectKey)key;
 
 - (void) get:(NSString*)name cb:(DotCDelegatorID)cb;
-- (void) set:(NSString*)name data:(id)data;
+- (void) set:(NSString*)name data:(id)data cb:(DotCDelegatorID)cb;
 - (void) getAt:(int)idx cb:(DotCDelegatorID)cb;
-- (void) setAt:(int)idx data:(id)data;
+- (void) setAt:(int)idx data:(id)data cb:(DotCDelegatorID)cb;
 - (void) call:(NSString*)name args:(NSArray*)args cb:(DotCDelegatorID)cb;
 
 @end

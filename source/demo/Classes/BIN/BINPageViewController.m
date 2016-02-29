@@ -13,15 +13,13 @@
     NSString*                   _name;
     BINNativeObjectReference*   _nativeObjectReference;
     BINScriptObject*            _scriptObject;
-    NSArray*                    _pushData;
-    DotCDictionaryWrapper*      _queryParams;
 }
 
 @end
 
 @implementation BINPageViewController
 
-- (instancetype) init:(NSString*)name scriptObject:(BINScriptObject*)scriptObject pushData:(NSArray*)pushData queryParams:(DotCDictionaryWrapper*)queryParams
+- (instancetype) init:(NSString*)name scriptObject:(BINScriptObject*)scriptObject;
 {
     if(!(self = [super init]))
     {
@@ -31,10 +29,15 @@
     _name = [name copy];
     _nativeObjectReference = [[BIN_GLOBAL_SCRIPT_MANAGER registeNativeObject:self] retain];
     _scriptObject = [scriptObject retain];
-    _pushData = [pushData retain];
-    _queryParams = [_queryParams retain];
     
     return self;
+}
+
+- (void)onViewPush:(NSString*)pushFrom pushData:(NSArray*)pushData queryParams:(DotCDictionaryWrapper*)queryParams
+{
+    _pushFrom = [pushFrom copy];
+    _pushData = [pushData retain];
+    _queryParams = [queryParams retain];
 }
 
 - (BINNativeObjectReference*) nativeObjectReference;
@@ -52,8 +55,15 @@
     return _name;
 }
 
+- (CGRect) naviBarFrame
+{
+    return _naviBarController.view.frame;
+}
+
 - (void) dealloc
 {
+    [_naviBarController release];
+    _naviBarController = nil;
     [_queryParams release];
     _queryParams = nil;
     [_pushData release];
@@ -75,7 +85,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    // setup nativigation bar
+    _naviBarController = STRONG_OBJECT(BINNaviBarViewController, initWithHolder:self);
+    CGRect frame = _naviBarController.view.frame;
+    frame.origin.y = self.statusBarFrame.size.height;
+    _naviBarController.view.frame = frame;
+    [self.view addSubview:_naviBarController.view];
+    
+    // trigger onload event
+    [_scriptObject call:@"onLoad" args:nil cb:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -84,26 +103,81 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) onSetupWebView:(UIWebView*) webView
+- (void) setTitle:(NSString *)title
 {
-    [super onSetupWebView:webView];
-    
-    //webView.hidden = true;
+    [_naviBarController setTitle:title];
 }
 
-- (void) exec:(NSString *)name args:(NSArray *)args proxy:(BINScriptObject *)proxy cb:(DotCDelegatorID)cb
+- (void) exec:(NSString *)name args:(NSArray*)args proxy:(BINScriptObject *)proxy cb:(DotCDelegatorID)cb
+{
+    if([name isEqualToString:@"onViewBack"])
+    {
+        NSString* backFrom = args[0];
+        NSArray*  backData = args[1];
+        backData = [BIN_GLOBAL_SCRIPT_MANAGER argsFmScript:backData];
+        
+        [self onViewBack:backFrom backData:backData];
+        
+        [BIN_DELEGATOR_MANAGER performDelegator:cb arguments:nil];
+        
+        return ;
+    }
+    if([name isEqualToString:@"onShow"])
+    {
+        [self onShow];
+        
+        [BIN_DELEGATOR_MANAGER performDelegator:cb arguments:nil];
+        
+        return ;
+    }
+    if([name isEqualToString:@"onHide"])
+    {
+        [self onHide];
+        
+        [BIN_DELEGATOR_MANAGER performDelegator:cb arguments:nil];
+        
+        return ;
+    }
+    if([name isEqualToString:@"onRemove"])
+    {
+        [self onRemove];
+        
+        [BIN_DELEGATOR_MANAGER performDelegator:cb arguments:nil];
+        
+        return ;
+    }
+    if([name isEqualToString:@"setTitle"])
+    {
+        NSString* backFrom = args[0];
+        [self setTitle:backFrom];
+        
+        [BIN_DELEGATOR_MANAGER performDelegator:cb arguments:nil];
+        
+        return ;
+    }
+}
+
+- (void)onViewBack:(NSString*)backFrom backData:(NSArray*)backData
+{
+
+}
+
+- (void)onShow
+{
+}
+
+- (void)onHide
+{
+}
+
+- (void)onRemove
 {
     
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void) goBack
+{
+    [self pop:nil];
 }
-*/
 
 @end

@@ -22,8 +22,17 @@
 		1F5B1A911C7717FD00156865 /* BINNativeBridgePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F5B1A901C7717FD00156865 /* BINNativeBridgePlugin.m */; settings = {ASSET_TAGS = (); }; };
 		1F766FE113BBADB100FB74C0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F766FDC13BBADB100FB74C0 /* Localizable.strings */; };
 		1F766FE213BBADB100FB74C0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F766FDF13BBADB100FB74C0 /* Localizable.strings */; };
+		1FA99DFE1C7FF45D00E2C6EA /* SubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA99DFC1C7FF45D00E2C6EA /* SubViewController.m */; settings = {ASSET_TAGS = (); }; };
+		1FA99DFF1C7FF45D00E2C6EA /* SubViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FA99DFD1C7FF45D00E2C6EA /* SubViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		1FB410CC1C83D1B000027279 /* HUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1FB410CB1C83D1B000027279 /* HUD.bundle */; };
+		1FB410D01C83E4CF00027279 /* ComDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB410CE1C83E4CF00027279 /* ComDemoViewController.m */; settings = {ASSET_TAGS = (); }; };
+		1FB410D11C83E4CF00027279 /* ComDemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FB410CF1C83E4CF00027279 /* ComDemoViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		1FB9DB711C8320D900831424 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FB9DB701C8320D900831424 /* back.png */; settings = {ASSET_TAGS = (); }; };
+		1FB9DC251C83265600831424 /* BINNaviBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB9DC231C83265600831424 /* BINNaviBarViewController.m */; settings = {ASSET_TAGS = (); }; };
+		1FB9DC261C83265600831424 /* BINNaviBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FB9DC241C83265600831424 /* BINNaviBarViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		1FD951111C715A64007268F7 /* BINEventEmiterPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD951101C715A64007268F7 /* BINEventEmiterPlugin.m */; settings = {ASSET_TAGS = (); }; };
 		1FDD9BD31C7C5CC300F16CA5 /* BINPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FDD9BD21C7C5CC300F16CA5 /* BINPageViewController.m */; settings = {ASSET_TAGS = (); }; };
+		1FF4280D1C7F3543009C3A80 /* BINStubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF4280C1C7F3543009C3A80 /* BINStubViewController.m */; settings = {ASSET_TAGS = (); }; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		301BF5B5109A6A2B0062928A /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF5B4109A6A2B0062928A /* AddressBook.framework */; };
 		301BF5B7109A6A2B0062928A /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF5B6109A6A2B0062928A /* AddressBookUI.framework */; };
@@ -89,13 +98,6 @@
 			remoteGlobalIDString = 733C76B719F2183F00282A32;
 			remoteInfo = LibDotCTests;
 		};
-		1F594AC61C7008BB00EFA8A9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1F594AC21C7008BB00EFA8A9 /* LibDotCR.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 73A20D2019F4F3FC00A5C246;
-			remoteInfo = LibDotCR;
-		};
 		1F594E681C702DE600EFA8A9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1F594AB91C7008AC00EFA8A9 /* LibDotC.xcodeproj */;
@@ -113,7 +115,6 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1F4C767F1C7C06D0008E1FE8 /* CordovaLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CordovaLib.xcodeproj; path = CordovaLib/CordovaLib.xcodeproj; sourceTree = "<group>"; };
 		1F594AB91C7008AC00EFA8A9 /* LibDotC.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LibDotC.xcodeproj; path = LibDotC/LibDotC.xcodeproj; sourceTree = "<group>"; };
-		1F594AC21C7008BB00EFA8A9 /* LibDotCR.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LibDotCR.xcodeproj; path = LibDotCR/LibDotCR.xcodeproj; sourceTree = "<group>"; };
 		1F5950FA1C7041E500EFA8A9 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		1F5951CE1C707A2300EFA8A9 /* BINScriptManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BINScriptManager.h; sourceTree = "<group>"; };
 		1F5951CF1C707A2300EFA8A9 /* BINScriptManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BINScriptManager.m; sourceTree = "<group>"; };
@@ -131,10 +132,23 @@
 		1F5B1A901C7717FD00156865 /* BINNativeBridgePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BINNativeBridgePlugin.m; sourceTree = "<group>"; };
 		1F766FDD13BBADB100FB74C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		1F766FE013BBADB100FB74C0 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Localizable.strings; sourceTree = "<group>"; };
+		1FA99DFB1C7FF45D00E2C6EA /* SubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubViewController.h; sourceTree = "<group>"; };
+		1FA99DFC1C7FF45D00E2C6EA /* SubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubViewController.m; sourceTree = "<group>"; };
+		1FA99DFD1C7FF45D00E2C6EA /* SubViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubViewController.xib; sourceTree = "<group>"; };
+		1FB410CB1C83D1B000027279 /* HUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = HUD.bundle; path = "LibDotC/LibDotC/3rdParty/SVProgressHUD-1.0/SVProgressHUD/HUD.bundle"; sourceTree = "<group>"; };
+		1FB410CD1C83E4CF00027279 /* ComDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComDemoViewController.h; sourceTree = "<group>"; };
+		1FB410CE1C83E4CF00027279 /* ComDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComDemoViewController.m; sourceTree = "<group>"; };
+		1FB410CF1C83E4CF00027279 /* ComDemoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComDemoViewController.xib; sourceTree = "<group>"; };
+		1FB9DB701C8320D900831424 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		1FB9DC221C83265600831424 /* BINNaviBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BINNaviBarViewController.h; sourceTree = "<group>"; };
+		1FB9DC231C83265600831424 /* BINNaviBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BINNaviBarViewController.m; sourceTree = "<group>"; };
+		1FB9DC241C83265600831424 /* BINNaviBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BINNaviBarViewController.xib; sourceTree = "<group>"; };
 		1FD9510F1C715A64007268F7 /* BINEventEmiterPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BINEventEmiterPlugin.h; sourceTree = "<group>"; };
 		1FD951101C715A64007268F7 /* BINEventEmiterPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BINEventEmiterPlugin.m; sourceTree = "<group>"; };
 		1FDD9BD11C7C5CC300F16CA5 /* BINPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BINPageViewController.h; sourceTree = "<group>"; };
 		1FDD9BD21C7C5CC300F16CA5 /* BINPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BINPageViewController.m; sourceTree = "<group>"; };
+		1FF4280B1C7F3543009C3A80 /* BINStubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BINStubViewController.h; sourceTree = "<group>"; };
+		1FF4280C1C7F3543009C3A80 /* BINStubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BINStubViewController.m; sourceTree = "<group>"; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		301BF56E109A69640062928A /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = SOURCE_ROOT; };
@@ -217,6 +231,12 @@
 				302D95F014D2391D003F00A1 /* MainViewController.xib */,
 				1D3623240D0F684500981E51 /* AppDelegate.h */,
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
+				1FA99DFB1C7FF45D00E2C6EA /* SubViewController.h */,
+				1FA99DFC1C7FF45D00E2C6EA /* SubViewController.m */,
+				1FA99DFD1C7FF45D00E2C6EA /* SubViewController.xib */,
+				1FB410CD1C83E4CF00027279 /* ComDemoViewController.h */,
+				1FB410CE1C83E4CF00027279 /* ComDemoViewController.m */,
+				1FB410CF1C83E4CF00027279 /* ComDemoViewController.xib */,
 			);
 			name = Classes;
 			path = demo/Classes;
@@ -247,17 +267,12 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1F594AC31C7008BB00EFA8A9 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				1F594AC71C7008BB00EFA8A9 /* LibDotCR.bundle */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		1F5951CD1C7079FB00EFA8A9 /* BIN */ = {
 			isa = PBXGroup;
 			children = (
+				1FB9DC221C83265600831424 /* BINNaviBarViewController.h */,
+				1FB9DC231C83265600831424 /* BINNaviBarViewController.m */,
+				1FB9DC241C83265600831424 /* BINNaviBarViewController.xib */,
 				1F5951CE1C707A2300EFA8A9 /* BINScriptManager.h */,
 				1F5951CF1C707A2300EFA8A9 /* BINScriptManager.m */,
 				1F5951D11C707D6F00EFA8A9 /* AppDelegate+BINSetup.h */,
@@ -276,6 +291,8 @@
 				1F5B1A901C7717FD00156865 /* BINNativeBridgePlugin.m */,
 				1FDD9BD11C7C5CC300F16CA5 /* BINPageViewController.h */,
 				1FDD9BD21C7C5CC300F16CA5 /* BINPageViewController.m */,
+				1FF4280B1C7F3543009C3A80 /* BINStubViewController.h */,
+				1FF4280C1C7F3543009C3A80 /* BINStubViewController.m */,
 			);
 			path = BIN;
 			sourceTree = "<group>";
@@ -299,8 +316,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				1FB410CB1C83D1B000027279 /* HUD.bundle */,
 				1F4C767F1C7C06D0008E1FE8 /* CordovaLib.xcodeproj */,
-				1F594AC21C7008BB00EFA8A9 /* LibDotCR.xcodeproj */,
 				1F594AB91C7008AC00EFA8A9 /* LibDotC.xcodeproj */,
 				F840E1F0165FE0F500CFE078 /* config.xml */,
 				301BF56E109A69640062928A /* www */,
@@ -327,6 +344,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1FB9DB701C8320D900831424 /* back.png */,
 				30A0434214DC770100060A13 /* de.lproj */,
 				30A0434514DC770100060A13 /* se.lproj */,
 				1F766FDB13BBADB100FB74C0 /* en.lproj */,
@@ -472,10 +490,6 @@
 					ProductGroup = 1F594ABA1C7008AC00EFA8A9 /* Products */;
 					ProjectRef = 1F594AB91C7008AC00EFA8A9 /* LibDotC.xcodeproj */;
 				},
-				{
-					ProductGroup = 1F594AC31C7008BB00EFA8A9 /* Products */;
-					ProjectRef = 1F594AC21C7008BB00EFA8A9 /* LibDotCR.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -506,13 +520,6 @@
 			remoteRef = 1F594AC01C7008AC00EFA8A9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		1F594AC71C7008BB00EFA8A9 /* LibDotCR.bundle */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = LibDotCR.bundle;
-			remoteRef = 1F594AC61C7008BB00EFA8A9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -520,9 +527,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FB410CC1C83D1B000027279 /* HUD.bundle in Resources */,
+				1FB9DC261C83265600831424 /* BINNaviBarViewController.xib in Resources */,
 				F840E1F1165FE0F500CFE078 /* config.xml in Resources */,
 				308D05371370CCF300D202BF /* icon-72.png in Resources */,
 				308D05381370CCF300D202BF /* icon.png in Resources */,
+				1FB410D11C83E4CF00027279 /* ComDemoViewController.xib in Resources */,
 				308D05391370CCF300D202BF /* icon@2x.png in Resources */,
 				3072F99713A8081B00425683 /* Capture.bundle in Resources */,
 				1F766FE113BBADB100FB74C0 /* Localizable.strings in Resources */,
@@ -531,6 +541,7 @@
 				30A0434814DC770100060A13 /* Localizable.strings in Resources */,
 				30A0434914DC770100060A13 /* Localizable.strings in Resources */,
 				3088BBBD154F3926009F9C59 /* Default-Landscape@2x~ipad.png in Resources */,
+				1FB9DB711C8320D900831424 /* back.png in Resources */,
 				3088BBBE154F3926009F9C59 /* Default-Landscape~ipad.png in Resources */,
 				1F5B18B01C7466F900156865 /* BINSplashViewController.xib in Resources */,
 				3088BBBF154F3926009F9C59 /* Default-Portrait@2x~ipad.png in Resources */,
@@ -539,6 +550,7 @@
 				3088BBC2154F3926009F9C59 /* Default~iphone.png in Resources */,
 				D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */,
 				30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */,
+				1FA99DFF1C7FF45D00E2C6EA /* SubViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,11 +581,15 @@
 				1F5951D31C707D6F00EFA8A9 /* AppDelegate+BINSetup.m in Sources */,
 				1F5B18BB1C76D5B000156865 /* BINScriptObject.m in Sources */,
 				1FDD9BD31C7C5CC300F16CA5 /* BINPageViewController.m in Sources */,
+				1FB410D01C83E4CF00027279 /* ComDemoViewController.m in Sources */,
+				1FA99DFE1C7FF45D00E2C6EA /* SubViewController.m in Sources */,
+				1FB9DC251C83265600831424 /* BINNaviBarViewController.m in Sources */,
 				1FD951111C715A64007268F7 /* BINEventEmiterPlugin.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1F5B1A911C7717FD00156865 /* BINNativeBridgePlugin.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				1F5B18AF1C7466F900156865 /* BINSplashViewController.m in Sources */,
+				1FF4280D1C7F3543009C3A80 /* BINStubViewController.m in Sources */,
 				1F5951D01C707A2300EFA8A9 /* BINScriptManager.m in Sources */,
 				1F5B18B51C7472A900156865 /* BINViewController.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,

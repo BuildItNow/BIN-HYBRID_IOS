@@ -7,13 +7,29 @@
 //
 
 #import "BINViewController.h"
+#import "BINNaviBarViewController.h"
 
 @interface BINPageViewController : BINViewController<BINNativeObjectProtocol>
+{
+    NSString*                   _pushFrom;
+    NSArray*                    _pushData;
+    DotCDictionaryWrapper*      _queryParams;
+    BINNaviBarViewController*   _naviBarController;
+}
 
-- (instancetype) init:(NSString*)name scriptObject:(BINScriptObject*)scriptObject pushData:(NSArray*)pushData queryParams:(DotCDictionaryWrapper*)queryParams;
+- (instancetype) init:(NSString*)name scriptObject:(BINScriptObject*)scriptObject;
+
+- (void)onViewPush:(NSString*)pushFrom pushData:(NSArray*)pushData queryParams:(DotCDictionaryWrapper*)queryParams;
 
 - (BINNativeObjectReference*) nativeObjectReference;
 - (BINScriptObject*) scriptObject;
 - (NSString*) name;
+- (CGRect) naviBarFrame;
+
+- (void) goBack;
+
+- (void)onViewBack:(NSString*)backFrom backData:(NSArray*)backData;
+
+- (void) setTitle:(NSString *)title;
 
 @end

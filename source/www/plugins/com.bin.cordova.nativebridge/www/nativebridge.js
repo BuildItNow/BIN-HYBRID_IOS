@@ -57,9 +57,14 @@ cordova.define("com.bin.cordova.nativebridge", function(require, exports, module
 
        doCB : function(cb, data)
        {
+            var args = [cb];
             // data must be array
             data = bin.nativeManager.argsToNative(data);
-            exec(defSuccess, defError, "BINNativeBridge", "doCB", [cb, data]);
+            if(data !== null && data !== undefined)
+            {
+                args.push(data);
+            }
+            exec(defSuccess, defError, "BINNativeBridge", "doCB", args);
        },
 
        linkNativeWithScript : function(nKey, sKey)
@@ -67,7 +72,7 @@ cordova.define("com.bin.cordova.nativebridge", function(require, exports, module
             exec(defSuccess, defError, "BINNativeBridge", "linkNativeWithScript", [nKey, sKey]);
        },
 
-       pushNativePageView : function(name, object, pushData, queryParams, cb)
+       pushNativePageView : function(name, object, pushFrom, pushData, queryParams, cb)
        {
             var nativeClass = object.__$class.native.ios;
 
@@ -86,11 +91,15 @@ cordova.define("com.bin.cordova.nativebridge", function(require, exports, module
                 cb(error, data);
             }
 
-            exec(cbSuccessWrapper(ncb) , cbErrorWrapper(ncb), "BINNativeBridge", "pushNativePageView", [name, nativeClass, object, pushData, queryParams]);
+            exec(cbSuccessWrapper(ncb) , cbErrorWrapper(ncb), "BINNativeBridge", "pushNativePageView", [name, nativeClass, object, pushFrom, pushData, queryParams]);
        },
-       popNativePageView : function(cb)
+       popNativePageView : function(count, ani, cb)
        {
-            exec(cbSuccessWrapper(cb) , cbErrorWrapper(cb), "BINNativeBridge", "popNativePageView", []);
+            exec(cbSuccessWrapper(cb) , cbErrorWrapper(cb), "BINNativeBridge", "popNativePageView", [count, ani]);
+       },
+       pushStubView : function(cb)
+       {    exec(cbSuccessWrapper(cb) , cbErrorWrapper(cb), "BINNativeBridge", "pushStubView", []);
        }
+       
     };               
 });

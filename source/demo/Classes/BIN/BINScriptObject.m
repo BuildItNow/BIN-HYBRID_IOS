@@ -57,15 +57,15 @@
 
 - (void) get:(NSString*)name cb:(DotCDelegatorID)cb
 {
-    NSString* js = [NSString stringWithFormat:@"bin.nativeManager.soGet('%@', '%@', '%@')", _key, name, cb];
+    NSString* js = [NSString stringWithFormat:@"bin.nativeManager.soGet('%@', '%@', %@)", _key, name, [self cbStr:cb]];
     
     [_scriptManager evalJsS:js];
 }
 
-- (void) set:(NSString*)name data:(id)data
+- (void) set:(NSString*)name data:(id)data cb:(DotCDelegatorID)cb
 {
-    [_wrapper addObject:[_scriptManager argToScript:data]];
-    NSString* js = [NSString stringWithFormat:@"bin.nativeManager.soSet('%@', '%@', '%@')", _key, name, [_wrapper JSONString]];
+    [_wrapper addObject:(data ? [_scriptManager argToScript:data] : [NSNull null])];
+    NSString* js = [NSString stringWithFormat:@"bin.nativeManager.soSet('%@', '%@', '%@', %@)", _key, name, [_wrapper JSONString], [self cbStr:cb]];
     [_wrapper removeAllObjects];
     
     [_scriptManager evalJsS:js];
@@ -76,19 +76,32 @@
     [self get:[NSString stringWithFormat:@"%d", idx] cb:cb];
 }
 
-- (void) setAt:(int)idx data:(id)data
+- (void) setAt:(int)idx data:(id)data cb:(DotCDelegatorID)cb
 {
-    [self set:[NSString stringWithFormat:@"%d", idx] data:data];
+    [self set:[NSString stringWithFormat:@"%d", idx] data:data cb:cb];
 }
 
 - (void) call:(NSString*)name args:(NSArray*)args cb:(DotCDelegatorID)cb
 {
-    NSArray*  soArgs = [_scriptManager argsToScript:args];
-    NSString* json   = [soArgs JSONString];
-    
-    NSString* js = [NSString stringWithFormat:@"bin.nativeManager.soCall('%@', '%@', '%@', '%@')", _key, name, json, cb];
+    NSString* js = [NSString stringWithFormat:@"bin.nativeManager.soCall('%@', '%@', %@, %@)", _key, name, [self argsStr:args], [self cbStr:cb]];
     
     [_scriptManager evalJsS:js];
+}
+
+- (NSString*) cbStr:(DotCDelegatorID)cb
+{
+    return cb ? [NSString stringWithFormat:@"'%@'", cb] : @"null";
+}
+
+- (NSString*) argsStr:(NSArray*)args;
+{
+    if(!args)
+    {
+        return @"null";
+    }
+    
+    NSArray*  soArgs = [_scriptManager argsToScript:args];
+    return [NSString stringWithFormat:@"'%@'", [soArgs JSONString]];
 }
 
 @end

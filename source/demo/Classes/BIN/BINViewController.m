@@ -8,6 +8,7 @@
 
 #import "BINViewController.h"
 #import "DotCSystemUtil.h"
+#import "CDVJSON.h"
 
 @interface BINViewController ()
 {
@@ -39,40 +40,89 @@
     }
 }
 
+- (CGRect) statusBarFrame
+{
+    return _statusBarFrame;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillAppear:(BOOL)animated
+
+- (void) push:(NSString*)name data:(NSArray*)data
 {
-    [super viewWillAppear:animated];
-    
-    [BIN_GLOBAL_SCRIPT_MANAGER onViewControllerAttach:self];
-    
-    [self onSetupWebView:BIN_GLOBAL_SCRIPT_MANAGER.webView];
+    [BINViewController push:name data:data];
 }
 
-- (void) onSetupWebView:(UIWebView*) webView
+- (void) pop:(NSArray*)data
 {
-    [self.view addSubview:webView];
-    webView.hidden = false;
-    
-    CGRect frame = self.view.frame;
-    frame.origin.x = 0;
-    frame.origin.y = _statusBarFrame.size.height;
-    frame.size.height -= _statusBarFrame.size.height;
-    webView.frame = frame;
+    [BINViewController pop:data];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void) popTo:(NSString*)name data:(NSArray*)data
 {
-    [BIN_GLOBAL_SCRIPT_MANAGER onViewControllerDettach:self];
-    
-    [super viewWillDisappear:animated];
+    [BINViewController popTo:name data:data];
 }
 
+- (void) pop:(int)count data:(NSArray*)data
+{
+    [BINViewController pop:count data:data];
+}
+
++ (void) push:(NSString*)name data:(NSArray*)data
+{
+    NSString* js = nil;
+    if(data)
+    {
+        data = [BIN_GLOBAL_SCRIPT_MANAGER argsToScript:data];
+        js = [NSString stringWithFormat:@"bin.nativeManager.push('%@', '%@')", name, [data JSONString]];
+    }
+    else
+    {
+        js = [NSString stringWithFormat:@"bin.nativeManager.push('%@')", name];
+    }
+    
+    [BIN_GLOBAL_SCRIPT_MANAGER evalJs:js];
+}
+
++ (void) pop:(NSArray*)data
+{
+    [self pop:1 data:data];
+}
+
++ (void) popTo:(NSString*)name data:(NSArray*)data
+{
+    NSString* js = nil;
+    if(data)
+    {
+        data = [BIN_GLOBAL_SCRIPT_MANAGER argsToScript:data];
+        js = [NSString stringWithFormat:@"bin.nativeManager.popTo('%@', '%@')", name, [data JSONString]];
+    }
+    else
+    {
+        js = [NSString stringWithFormat:@"bin.nativeManager.popTo('%@')", name];
+    }
+    [BIN_GLOBAL_SCRIPT_MANAGER evalJs:js];
+}
+
++ (void) pop:(int)count data:(NSArray*)data
+{
+    NSString* js = nil;
+    if(data)
+    {
+        data = [BIN_GLOBAL_SCRIPT_MANAGER argsToScript:data];
+        js = [NSString stringWithFormat:@"bin.nativeManager.pop('%d', '%@')", count, [data JSONString]];
+    }
+    else
+    {
+        js = [NSString stringWithFormat:@"bin.nativeManager.pop('%d')", count];
+    }
+    
+    [BIN_GLOBAL_SCRIPT_MANAGER evalJs:js];
+}
 
 /*
 #pragma mark - Navigation

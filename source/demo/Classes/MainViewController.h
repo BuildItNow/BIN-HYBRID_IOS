@@ -26,8 +26,8 @@
 //
 
 #import "BINScriptManager.h"
-#import "BINPageViewController.h"
+#import "BINStubViewController.h"
 
-@interface MainViewController : BINPageViewController
+@interface MainViewController : BINStubViewController
 
 @end

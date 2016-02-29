@@ -139,8 +139,6 @@ static NSString* objectToString(id subject)
     return ref ? ref.nativeObject : nil;
 }
 
-
-
 - (void) removeNativeObjectByKey:(NativeObjectKey)key
 {
     BINNativeObjectReference* ref = (BINNativeObjectReference*)[_key2nativeObjects objectForKey:key];
@@ -178,9 +176,11 @@ static NSString* objectToString(id subject)
     }
     
     NSMutableArray* ret = [NSMutableArray arrayWithCapacity:args.count];
+    id val = nil;
     for(int i=0,i_sz=args.count; i<i_sz; ++i)
     {
-        [ret addObject:[self argToScript:args[i]]];
+        val = [self argToScript:args[i]];
+        [ret addObject:val ? val : [NSNull null]];
     }
     
     return ret;
@@ -194,9 +194,11 @@ static NSString* objectToString(id subject)
     }
     
     NSMutableArray* ret = [NSMutableArray arrayWithCapacity:args.count];
+    id val = nil;
     for(int i=0,i_sz=args.count; i<i_sz; ++i)
     {
-        [ret addObject:[self argFmScript:args[i]]];
+        val = [self argFmScript:args[i]];
+        [ret addObject:(val ? val : [NSNull null])];
     }
     
     return ret;

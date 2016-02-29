@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ComDemoViewController">
+            <connections>
+                <outlet property="mainView" destination="aza-jL-hbA" id="zWE-NR-Uvt"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" id="aza-jL-hbA">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" id="1KO-eU-Dzh">
+                            <rect key="frame" x="0.0" y="2" width="320" height="203"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <mutableString key="text">BIN-HYBRID JS-OC通信机制： 1：原生对象通过BIN_GLOBAL_SCRIPT_MANAGER.registeNativeObject注册自己到JS环境，JS环境会相应的创建一个NativeObjectProxy，JS通过Proxy对象的exec来调用原生代码，原生对象需要实现BINNativeObjectProtocol协议 2：JS对象通过bin.nativeManager.regScriptObject注册自己到OC环境，OC环境会创建对应的BINScriptObject，OC通过提供的get,set,call来条用JS代码 BIN-HYBRID BINPageViewController： 如果要结合BIN自身JS框架的特性，所有的原生页面需要从BINPageViewController继承下来，BINPageViewController包含一个scriptObject属性，该属性是对应的在BIN框架中的view对象，因此JS业务可以在view对象中开发；而view对象必须是从bin/native/nativePageView继承下来，view对象包含一个_nativeObject属性，该属性是对应的BINPageViewController对象 参数传递协议： 1：exec ： 传入Array 返回Array 2：get: 返回Array 3：set: 传入Object 4：call: 传入Array 返回Array </mutableString>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="h4g-kB-uvk">
+                            <rect key="frame" x="106" y="213" width="108" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="获取JS对象属性"/>
+                            <connections>
+                                <action selector="onGet:" destination="-1" eventType="touchUpInside" id="dZ4-Me-X4T"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7LH-Dc-h5x">
+                            <rect key="frame" x="106" y="251" width="108" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="设置JS对象属性"/>
+                            <connections>
+                                <action selector="onSet:" destination="-1" eventType="touchUpInside" id="3L6-mA-oDg"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fdf-QD-siG">
+                            <rect key="frame" x="106" y="289" width="108" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="调用JS对象函数"/>
+                            <connections>
+                                <action selector="onCall:" destination="-1" eventType="touchUpInside" id="ZiQ-YO-X1K"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Kcn-fb-Bg7">
+                            <rect key="frame" x="106" y="324" width="108" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="JS调用原生代码"/>
+                            <connections>
+                                <action selector="onJSCallNative:" destination="-1" eventType="touchUpInside" id="g0M-im-TC4"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <point key="canvasLocation" x="217" y="220"/>
+        </view>
+    </objects>
+</document>
