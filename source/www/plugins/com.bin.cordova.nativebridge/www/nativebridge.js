@@ -74,7 +74,21 @@ cordova.define("com.bin.cordova.nativebridge", function(require, exports, module
 
        pushNativePageView : function(name, object, pushFrom, pushData, queryParams, cb)
        {
-            var nativeClass = object.__$class.native.ios;
+            var nativeClass = "";
+            if(bin.platform.ios)
+            {
+                nativeClass = object.__$class.native.ios;
+            }
+            else if(bin.platform.android)
+            {
+                nativeClass = object.__$class.native.android;
+            }
+            else
+            {
+                cb("Not support platform");
+
+                return ;
+            }
 
             object = REG_SCRIPT_OBJECT(object);
             object = bin.nativeManager.argToNative(object); 
@@ -98,7 +112,16 @@ cordova.define("com.bin.cordova.nativebridge", function(require, exports, module
             exec(cbSuccessWrapper(cb) , cbErrorWrapper(cb), "BINNativeBridge", "popNativePageView", [count, ani]);
        },
        pushStubView : function(cb)
-       {    exec(cbSuccessWrapper(cb) , cbErrorWrapper(cb), "BINNativeBridge", "pushStubView", []);
+       {   
+            if(bin.platform.browser || bin.platform.android)  // Unsupport platform
+            {
+                cb();
+
+                return ;
+            }
+
+
+            exec(cbSuccessWrapper(cb) , cbErrorWrapper(cb), "BINNativeBridge", "pushStubView", []);
        }
        
     };               
